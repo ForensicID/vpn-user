@@ -1,4 +1,4 @@
-# VPN User Monitoring
+# OpenVPN User Monitoring
 This script monitors VPN users and sends notifications to Telegram. It helps network administrators track VPN user activity in real-time.
 ## Requirement
 1. OpenVPN Server
