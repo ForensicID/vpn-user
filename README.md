@@ -10,7 +10,7 @@ git clone https://github.com/ForensicID/vpn-user.git
 ```
 ### Adding Execute Permission
 ```
-chmod -R /path/to/your/directory/vpn_user.sh
+chmod +x /path/to/your/directory/vpn_user.sh
 ```
 ### Run Script for Background Process
 ```
@@ -34,4 +34,34 @@ crontab -e
 Adding start the script on Booting Process
 ```
 @reboot bash /path/to/your/directory/vpn_user.sh &
+```
+### OR Adding in systemd
+Create file with your file editor
+```
+nano /etc/systemd/system/yourServiceName.service
+```
+Adding some configuration for systemd service
+```
+[Unit]
+Description=Script VPN User Service
+After=network.target
+
+[Service]
+ExecStart=/path/to/your/directory/vpn_user.sh
+User=root
+Group=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+Reload the Daemon service for change configuration
+```
+systemctl daemon-reload
+```
+And then enable and start the vpn user systemd service
+```
+systemctl enable yourServiceName.service
+systemctl start yourServiceName.service
+systemctl status yourServiceName.service
 ```
